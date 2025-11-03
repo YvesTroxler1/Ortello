@@ -230,4 +230,37 @@ export class Board {
         }
         throw RangeError(`illegal player ${player}`);
     }
+
+    isValidMove(player, row, col) {
+        if (player !== one && player !== two) {
+            throw new RangeError(`illegal player ${player}`);
+        }
+        if (typeof row !== "number" || typeof col !== "number") {
+            throw new TypeError("row and col must be numbers");
+        }
+        if (row < 0 || row >= dimension || col < 0 || col >= dimension) {
+            throw new RangeError(`move [${row}/${col}] is out of bounds`);
+        }
+        if (this.fields[row][col] !== empty) {
+            return false; // belegt
+        }
+
+        const other = this.opponent(player);
+
+        for (const [dr, dc] of shifts) {
+            let r = row + dr, c = col + dc;
+
+            if (r < 0 || r >= dimension || c < 0 || c >= dimension) continue;
+            if (this.fields[r][c] !== other) continue;
+
+            r += dr; c += dc;
+            while (r >= 0 && r < dimension && c >= 0 && c < dimension) {
+                const v = this.fields[r][c];
+                if (v === empty) break;
+                if (v === player) return true;
+                r += dr; c += dc;
+            }
+        }
+        return false;
+    }
 }
