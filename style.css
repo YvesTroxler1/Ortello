@@ -1,0 +1,59 @@
+body {
+    font-family: sans-serif;
+    margin: 1em auto;
+    width: 608px;
+    background-color: #efefef;
+}
+
+div#header {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+div#header p {
+    display: inline-block;
+    padding-right: 2em;
+}
+
+div#header > p#result {
+    color: red;
+}
+
+div#board {
+    padding: 0;
+    margin: 0;
+}
+
+div#board > div.field {
+    float: left;
+    border: 2px solid black;
+    width: 64px;
+    height: 64px;
+    margin: 4px;
+    border-radius: 100%;
+}
+
+div.empty {
+    background-color: #bedead;
+}
+
+div.playerOne {
+    background-color: black;
+}
+
+div.playerTwo {
+    background-color: white;
+}
+
+.clear {
+    clear: both;
+}
+
+div#status {
+    clear: both;
+    float: none;
+    font-size: 24px;
+    font-weight: bold;
+    padding-top: 32px;
+    color: red;
+}
